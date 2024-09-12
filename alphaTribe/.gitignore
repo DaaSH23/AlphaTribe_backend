@@ -1,10 +1,11 @@
-/*
-!/alphaTribe/
+# Ignore everything in the parent directory
+../*
 
+# Except for alphaTribe
+!/alphaTribe/
 
 # Node.js dependencies
 node_modules
 
 # Environment variables
 .env
-
