@@ -120,10 +120,10 @@ const userLogin = catchAsyncError(async (req, res, next) => {
 const updateUser = catchAsyncError(async (req, res, next) => {
     try {
         const { username, bio, profilePicture } = req.body;
-        const userId = req.user.userId;
+        const userId = req.user._id;
         const updateUser = await User.findByIdAndUpdate(
             userId,
-            { username, email, profilePicture },
+            { username, bio, profilePicture },
             { new: true, runValidators: true } //return updated user
         )
 
@@ -151,8 +151,9 @@ const updateUser = catchAsyncError(async (req, res, next) => {
 const userProfileDetails = catchAsyncError(async (req, res, next) => {
     try {
         const userId = req.user.userId;
+        // const {userId} = req.params;
         // find the user by Id
-        const profileData = await User.findById(userId).select('username bio profilePicture');
+        const profileData = await User.findOne({userId}).select('username bio profilePicture');
         //check if the user exists
         if (!profileData) {
             return next(new ErrorHandler("User not found", 404));

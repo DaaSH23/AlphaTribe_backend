@@ -20,6 +20,14 @@ const userSchema = new mongoose.Schema({
         required: [true, "Password must be provided"],
         select: true,
     },
+    bio: {
+        type: String,
+        default: null,
+    },
+    profilePicture: {
+        type: String,
+        default: null,
+    },
     createdAt: {
         type: Date,
         default: Date.now(),
